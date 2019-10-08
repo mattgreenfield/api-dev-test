@@ -1,5 +1,5 @@
 # javascript-api-test
-Test for Front end developer candidates. When you start the test, create a branch off of master that you will name after you and when you are done create a pull request assigned to Clara Grant or Dan Pickford. Good luck!
+Test for Front end developer candidates. When you start the test, create a branch off of master that you will name after you and when you are done create a pull request assigned to Clara Grant or James Baker. Good luck!
 
 # Story
 The quarterly review of the company is upon us and we need to find beers for everyone! There's 30 people expected to go and we want a good variety of beers but also a good amount of pale ales. 
