@@ -2,7 +2,11 @@
 This test is aimed at Front End developer candidates. Ideally, we'd like you to try and use Javascript (Typescript if you can) and React as this closely matches what you'd be using while working with us. If you are more comfortable in Vue or some other framework or language, then please use that. If you are applying for one of our other roles and sent this test, please use which ever scripting language you feel best shows of your abilities. If you can use the format we mention above, then that's great!
 
 # Getting started
-When you start the test, create a branch off of master that you will name after yourself. When you are done, create a pull request and assign it to Clara Grant or Dean Pugh. If you can't create a Pull Request, then don't worry please add your project in a zip folder and send it to us via email. Good luck!
+To start the test, create a fork of this repo and make sure it is public. You can fork this repo by clicking the Fork button in the top right, as shown in the image below.
+
+![image](https://user-images.githubusercontent.com/11994745/170240550-9770f17d-3726-44da-a0d6-28875817c9f3.png)
+
+When you are done, commit and push everything to your own repository and send us a link to the resposity via email. If you have problems forking this repo, or getting everything up to github, then please just zip up everything and send it to us via email. Good luck!
 
 # Story
 The quarterly review of the company is upon us and we need to decide on cocktails for everyone! There's 50 people expected to go and we want a good variety of cocktails ahead of time to organise ingredients to buy. 
