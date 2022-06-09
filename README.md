@@ -1,5 +1,5 @@
 # api-dev-test
-This test is aimed at Front End developer candidates. Ideally, we'd like you to try and use Javascript (Typescript if you can) and React as this closely matches what you'd be using while working with us. If you are more comfortable in Vue or some other framework or language, then please use that. If you are applying for one of our other roles and sent this test, please use which ever scripting language you feel best shows of your abilities. If you can use the format we mention above, then that's great!
+This test is aimed at Front End developer candidates. Ideally, we'd like you to try and use Javascript (Typescript if you can) and React as this closely matches what you'd be using while working with us. If you are more comfortable in Vue or some other framework or language, then please use that. If you are applying for one of our other roles and sent this test, please use which ever scripting language you feel best shows off your abilities. If you can use the format we mention above, then that's great!
 
 # Getting started
 To start the test, create a fork of this repo and make sure it is public. You can fork this repo by clicking the Fork button in the top right, as shown in the image below.
