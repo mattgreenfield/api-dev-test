@@ -1,25 +1,29 @@
-import { Dialog, Transition } from '@headlessui/react';
-import React, { FC, Fragment, ReactNode, useState } from 'react';
+import { Dialog, Transition } from "@headlessui/react";
+import React, { FC, Fragment, ReactNode, useState } from "react";
 
 type ModalProps = {
-  forceOpen: boolean;
-  onClose: () => void;
-  footer: () => ReactNode;
+  forceOpen?: boolean;
+  children: ReactNode;
+  trigger: (openModal: () => void) => ReactNode;
 };
 
-export const Modal: FC<ModalProps> = ({ children, forceOpen = false, onClose = () => {}, footer }) => {
+export const Modal: FC<ModalProps> = ({
+  children,
+  forceOpen = false,
+  trigger,
+}) => {
   let [isOpen, setIsOpen] = useState(forceOpen);
 
   function openModal() {
     setIsOpen(true);
   }
+  function onClose() {
+    setIsOpen(false);
+  }
 
   return (
     <>
-      <button type="button" onClick={openModal} aria-label="open modal">
-        Open dialog
-      </button>
-
+      {trigger(openModal)}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={onClose}>
           <Transition.Child
@@ -45,11 +49,8 @@ export const Modal: FC<ModalProps> = ({ children, forceOpen = false, onClose = (
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform rounded-t-3xl overflow-hidden text-left align-middle shadow-xl transition-all">
-                  <div className="rounded-3xl bg-white">{children}</div>
-                  <nav className="relative bg-gray-50 rounded-3xl flex border-t divide-x overflow-hidden">
-                    {typeof footer === 'function' && footer()}
-                  </nav>
+                <Dialog.Panel className="w-full max-w-screen-lg transform rounded-xl bg-white p-4 overflow-hidden text-left align-middle shadow-xl transition-all">
+                  <div className="">{children}</div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

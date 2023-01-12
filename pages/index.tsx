@@ -1,13 +1,12 @@
-import Head from 'next/head'
-import { Inter } from '@next/font/google'
-import { useEffect, useState } from 'react'
-import classNames from 'classnames'
-import {CocktailList} from '../components/CocktailList'
+import Head from "next/head";
+import { Inter } from "@next/font/google";
+import { useEffect, useState } from "react";
+import classNames from "classnames";
+import { CocktailList } from "../components/CocktailList";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-
   // TODO: store a list of all the cocktails we know about so we don't have to keep fetching them??
   // Maybe in redux...
 
@@ -46,9 +45,7 @@ export default function Home() {
     setRecommendedLoading(true);
 
     // TODO: can I get it to return 2 results??
-    fetch(
-      "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007"
-    )
+    fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007")
       .then((res) => res.json())
       .then((data) => {
         setRecommendedCocktails(data.drinks);
@@ -66,7 +63,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={classNames([inter.className, "container mx-auto mt-10"])}>
+      <div className={classNames([inter.className, "container px-4 mx-auto mt-10"])}>
         <header className="mb-8">
           <h1 className="font-bold text-2xl">Cocktail Party Picker</h1>
           <p>

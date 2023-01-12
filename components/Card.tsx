@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import classNames from 'classnames';
+import React, { FC } from "react";
+import classNames from "classnames";
 
 type CardProps = {
   children: React.ReactNode;
@@ -7,7 +7,11 @@ type CardProps = {
   growOnHover: boolean;
 };
 
-export const Card: FC<CardProps> = ({ children, isSquare, growOnHover = true }) => {
+export const Card: FC<CardProps> = ({
+  children,
+  isSquare,
+  growOnHover = true,
+}) => {
   return (
     <div
       className={classNames(
