@@ -1,28 +1,39 @@
 import React, { FC, useEffect, useState } from "react";
 import { Modal } from "./Modal";
 import { Drink } from '../types';
+import { Card } from "./Card";
+import useDebounce from "../helpers/debounce";
+import { Button } from "./Button";
 
 type AddModalProps = {
-  //   heading: string;
+    onAdd: (id: string) => void;
 };
 
-export const AddModal: FC<AddModalProps> = () => {
+export const AddModal: FC<AddModalProps> = ({onAdd}) => {
   const [search, setSearch] = useState('');
+  const debouncedSearch = useDebounce(search, 1000);
+
   const [results, setResults] = useState<Drink[]>([]);
   const [loading, setLoading] = useState(false);
 
-//   useEffect(() => {
-//     setLoading(true);
+  useEffect(() => {
+    setLoading(true);
 
-//     fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
-//       .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${debouncedSearch}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
         
-//         setResults(data.drinks);
-//         setLoading(false);
-//       });
-//   }, [search]);
+        setResults(data.drinks);
+        setLoading(false);
+      });
+  }, [debouncedSearch]);
+
+  const addToList = (id: string) => {
+    // TODO
+    console.log(id);
+    onAdd(id);
+  }
 
   return (
     <Modal
@@ -46,13 +57,32 @@ export const AddModal: FC<AddModalProps> = () => {
             onChange={(event) => setSearch(event.target.value)}
           />
         </form>
-        <div className="pl-4">
-          <h2>Results</h2>
+        <div className="pl-4 flex-grow">
+          <h2 className="mb-4 text-2xl font-bold">Results</h2>
           {results && (
-            <ul>
-              {results.map((drink) => (
-                <li>{drink.strDrink}</li>
-              ))}
+            <ul className="space-y-2">
+              {results.map(
+                ({ strDrink, idDrink, strDrinkThumb, strAlcoholic }) => (
+                  <li key={idDrink + "_addButton"}>
+                    <Card growOnHover={false}>
+                      <div className="flex p-4 gap-4">
+                        <img
+                          className="aspect-square bg-gray-100"
+                          src={strDrinkThumb}
+                          alt={strDrink}
+                          width="100px"
+                          height="100px"
+                        />
+                        <div>
+                          <div className="text-lg font-bold">{strDrink}</div>
+                          {strAlcoholic}
+                          <Button onClick={() => addToList(idDrink)}>Add to my list</Button>
+                        </div>
+                      </div>
+                    </Card>
+                  </li>
+                )
+              )}
             </ul>
           )}
         </div>
