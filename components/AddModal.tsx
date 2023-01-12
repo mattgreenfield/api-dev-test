@@ -29,23 +29,17 @@ export const AddModal: FC<AddModalProps> = ({onAdd}) => {
       });
   }, [debouncedSearch]);
 
-  const addToList = (id: string) => {
-    // TODO
-    console.log(id);
-    onAdd(id);
-  }
-
   return (
     <Modal
-      trigger={(openModal) => (
-        <button
-          type="button"
-          onClick={() => openModal()}
-          className="flex items-center justify-center border aspect-square rounded-2xl bg-gray-100 hover:bg-gray-50"
-        >
-          Add Another
-        </button>
-      )}
+        trigger={(openModal) => (
+            <button
+            type="button"
+            onClick={() => openModal()}
+            className="flex items-center justify-center border aspect-square rounded-2xl bg-gray-100 hover:bg-gray-50"
+            >
+            Add Another
+            </button>
+        )}
     >
       <div className="flex divide-x gap-4">
         <form action="" className="w-56">
@@ -73,10 +67,14 @@ export const AddModal: FC<AddModalProps> = ({onAdd}) => {
                           width="100px"
                           height="100px"
                         />
-                        <div>
+                        <div className="w-full">
                           <div className="text-lg font-bold">{strDrink}</div>
                           {strAlcoholic}
-                          <Button onClick={() => addToList(idDrink)}>Add to my list</Button>
+                          <div className="mt-4 flex justify-end">
+                            <Button onClick={() => onAdd(idDrink)}>
+                              Add to my list
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </Card>

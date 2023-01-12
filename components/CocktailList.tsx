@@ -49,7 +49,7 @@ export const CocktailList: FC<CocktailListProps> = ({
               </Card>
             </li>
           ))}
-          {!!emptySlots && <AddModal />}
+          {!!emptySlots && <AddModal onAdd={console.log} />}
           {[...Array(emptySlots).keys()].map((index) => (
             <li key={index + "skeleton"}>
               <Card isSquare growOnHover={false} />
