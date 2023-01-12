@@ -1,4 +1,13 @@
 ## TODO List
+- The 'Add to List' button doesn't do anything
+- Reusable hook for creating API requests, with loading and error state
+- Store the details of any cocktail in redux when we see it, then we don't need to fetch it again
+- Add filters
+
+## API Difficulties
+If I has control over the API or was working with the backend team that did, I would raise these points:
+- There doesn't seem to be a way to add a filter AND a search - this will make the UI tricky / confusing
+- There doesn't seem to be a way to get multiple cocktails at once by ID?
 
 ---
 
