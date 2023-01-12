@@ -1,19 +1,62 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import classNames from 'classnames'
-import { Card } from '../components/Card'
 import {CocktailList} from '../components/CocktailList'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const [usersCocktails, setUsersCocktails] = useState([{ id: 1, name: 'maragrita'}]);
+  // TODO: store a list of all the cocktails we know about so we don't have to keep fetching them??
+  // Maybe in redux...
+
+  const [usersCocktailIds, setUsersCocktailIds] = useState([]);
+  const [usersCocktails, setUsersCocktails] = useState([]);
+  const [usersLoading, setUsersLoading] = useState(false);
+  useEffect(() => {
+    setUsersLoading(true);
+
+    // TODO: can I get it to return 2 results??
+    fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007")
+      .then((res) => res.json())
+      .then((data) => {
+        setUsersCocktails(data.drinks);
+        setUsersLoading(false);
+      });
+  }, [usersCocktailIds]);
+
   const [teamsCocktails, setTeamsCocktails] = useState([]);
+  const [teamLoading, setTeamLoading] = useState(false);
+  useEffect(() => {
+    setTeamLoading(true);
+
+    // TODO: can I get it to return 2 results??
+    fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007")
+      .then((res) => res.json())
+      .then((data) => {
+        setTeamsCocktails(data.drinks);
+        setTeamLoading(false);
+      });
+  }, []);
+
   const [recommendedCocktails, setRecommendedCocktails] = useState([]);
-  const [shoppingList, setShoppingList] = useState([]);
+  const [recommendedLoading, setRecommendedLoading] = useState(false);
+  useEffect(() => {
+    setRecommendedLoading(true);
+
+    // TODO: can I get it to return 2 results??
+    fetch(
+      "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setRecommendedCocktails(data.drinks);
+        setRecommendedLoading(false);
+      });
+  }, []);
+
+  // const [shoppingList, setShoppingList] = useState([]);
 
   return (
     <>
@@ -34,27 +77,30 @@ export default function Home() {
           <CocktailList
             items={usersCocktails}
             heading="Your Choices"
-            loading="false"
+            loading={usersLoading}
+            addBlank={10}
+            cols={10}
             error="null"
           />
           <CocktailList
             items={teamsCocktails}
             heading="Teams Choices"
-            loading="false"
+            loading={teamLoading}
             error="null"
+            cols={10}
           />
           <CocktailList
             items={recommendedCocktails}
             heading="Recomended Cocktails"
-            loading="false"
+            loading={recommendedLoading}
             error="null"
           />
-          <CocktailList
+          {/* <CocktailList
             items={shoppingList}
             heading="Shopping List"
             loading="false"
             error="null"
-          />
+          /> */}
         </main>
       </div>
     </>
